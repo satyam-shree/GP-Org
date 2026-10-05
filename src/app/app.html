@@ -1,0 +1,194 @@
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header" id="home">
+  <p class="site-header__contact">Contact: 98xx23xx98</p>
+  <div class="site-header__bar">
+    <div class="site-header__main">
+      <a class="brand" href="#home" (click)="closeMenu()" aria-label="G Pandey Trust home">
+        <img class="brand__seal" src="images/logo-seal.png" alt="" width="64" height="64" />
+        <span class="brand__name">G Pandey Trust</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        [attr.aria-expanded]="menuOpen()"
+        aria-controls="primary-nav"
+        aria-label="Toggle navigation menu"
+        (click)="toggleMenu()"
+      >
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav id="primary-nav" class="nav" [class.nav--open]="menuOpen()" aria-label="Primary">
+        @for (link of navLinks; track link.href) {
+          <a class="nav__pill" [href]="link.href" (click)="closeMenu()">{{ link.label }}</a>
+        }
+        <a class="here-btn here-btn--inline" href="#contact" (click)="closeMenu()">
+          <ng-container *ngTemplateOutlet="hand"></ng-container>
+          Here for You
+        </a>
+      </nav>
+    </div>
+    <div class="site-header__side">
+      <a class="here-btn" href="#contact">
+        <ng-container *ngTemplateOutlet="hand"></ng-container>
+        Here for You
+      </a>
+    </div>
+  </div>
+</header>
+
+<ng-template #hand>
+  <svg class="here-btn__icon" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M9 11V4.5a1.5 1.5 0 0 1 3 0V10" />
+    <path d="M12 10V3.5a1.5 1.5 0 0 1 3 0V10" />
+    <path d="M15 10V5.5a1.5 1.5 0 0 1 3 0V14c0 4-2.5 7-6.5 7-3 0-4.5-1.5-6-4l-2-3.2a1.5 1.5 0 0 1 2.4-1.8L9 14" />
+  </svg>
+</ng-template>
+
+<main id="main">
+  <section class="hero" aria-label="Volunteers distributing food to children">
+    <img
+      class="hero__img"
+      src="images/hero.jpg"
+      alt="Children reaching out their hands as a volunteer in saffron robes holds a bag of grain"
+      width="2000"
+      height="865"
+      fetchpriority="high"
+    />
+  </section>
+
+  <p class="quote" lang="hi">{{ quote }}</p>
+
+  <section class="donate" id="about" aria-labelledby="donate-title">
+    <div class="donate__panel">
+      <div class="donate__text">
+        <h2 id="donate-title" class="serif">Donate For Good Cause</h2>
+        <a class="donate-btn" href="#contact">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="4" y="8" width="16" height="12" rx="2" />
+            <path d="M8 8V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V8" />
+            <path d="M12 17.2s-3-1.8-3-3.9a1.7 1.7 0 0 1 3-1.1 1.7 1.7 0 0 1 3 1.1c0 2.1-3 3.9-3 3.9z" />
+          </svg>
+          DONATE HERE
+        </a>
+      </div>
+      <img
+        class="donate__banner"
+        src="images/banner.jpg"
+        alt="Dr. Gangeshwar Pandey Trust, Jeevan Jayate, over a photo of children"
+        width="800"
+        height="296"
+        loading="lazy"
+      />
+    </div>
+    <div class="donate__about serif">
+      <p>
+        Our non-profit organization deals with food rescue and other social activities. It was
+        initiated by <strong>Mr. Binod Kumar Pandey</strong> to bridge the gap between hunger and
+        excess food. The organization's objective is to help people during a pandemic or any
+        natural calamity.
+      </p>
+      <p>
+        We aim to eliminate hunger, malnutrition and food wastage, many meals at a time, along with
+        flood relief, Covid support, fulfilling medicine shortages and more.
+      </p>
+      <p>
+        And we are always here to help, with passion and innovation, for the welfare and upliftment
+        of people.
+      </p>
+    </div>
+  </section>
+
+  @for (f of features; track f.title; let i = $index) {
+    <section class="feature" [attr.aria-labelledby]="'feature-' + i">
+      <div class="feature__wrap">
+        <div class="feature__photo">
+          <div class="frame" [class.frame--uncropped]="f.uncropped">
+            <img [src]="f.image" [alt]="f.alt" loading="lazy" />
+          </div>
+        </div>
+        <div class="feature__copy">
+          <h2 [id]="'feature-' + i" class="serif">{{ f.title }}</h2>
+          <p class="serif">{{ f.body }}</p>
+          <a class="see-more" href="#gallery">
+            See more
+            <span class="chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6" /></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+  }
+
+  <section class="stats" aria-label="Our impact in numbers">
+    <div class="stats__box">
+      @for (s of stats; track s.label) {
+        <div class="stats__item">
+          <strong>{{ s.value }}</strong>
+          <span>{{ s.label }}</span>
+        </div>
+      }
+    </div>
+    <div class="stats__note">
+      <p>
+        We at GP Trust are very happy and excited to share these numbers with you all. We are glad
+        that we are reaching and helping as many people as we can. We are so happy to share these
+        numbers, and they are increasing rapidly every day.
+      </p>
+      <div class="stats__logo">
+        <img src="images/logo-seal.png" alt="" width="120" height="120" loading="lazy" />
+        <span>DR.GP<br />Trust</span>
+      </div>
+    </div>
+  </section>
+
+  @for (r of recognitions; track r.title; let i = $index) {
+    <section class="recognition" [attr.aria-labelledby]="'recognition-' + i">
+      <div class="recognition__wrap">
+        <div class="recognition__copy">
+          <h2 [id]="'recognition-' + i" class="serif">{{ r.title }}</h2>
+          <p class="serif">{{ r.body }}</p>
+        </div>
+        <div class="recognition__photo">
+          <img
+            src="images/media-coverage.jpg"
+            alt="Breaking news broadcast showing the trust's red banner and slogan"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+  }
+
+  <section class="gallery" id="gallery" aria-label="Photo gallery">
+    <div class="gallery__wrap">
+      <ul class="gallery__grid">
+        @for (g of gallery; track g.src) {
+          <li><img [src]="g.src" [alt]="g.alt" loading="lazy" /></li>
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="closing" id="contact">
+    <p class="closing__text">
+      Here, we feel very happy sharing some captured moments of the work we do and love, like our
+      food and recreational camps and many others. Have a look through our gallery too.
+    </p>
+    <a class="see-more see-more--bold" href="#gallery">
+      See more of us
+      <span class="chev" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6" /></svg>
+      </span>
+    </a>
+    <p class="closing__motto" lang="hi">जीवन जयते</p>
+    <img class="closing__hands" src="images/namaste.png" alt="Hands folded in namaste" width="355" height="270" loading="lazy" />
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>&copy; {{ year }} G Pandey Trust (Dr. Gangeshwar Pandey Trust), Bhojpur, Bihar. Jeevan Jayate.</p>
+</footer>

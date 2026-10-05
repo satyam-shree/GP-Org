@@ -1,0 +1,46 @@
+:root {
+  --sky: #6cc5e4;
+  --sky-deep: #0099dd;
+  --sky-soft: #7dd6f4;
+  --charcoal: #3e3e43;
+  --panel: #e6e7e8;
+  --tan: #d9d1c9;
+  --ink: #111;
+  --font-sans: 'Poppins', 'Noto Sans Devanagari', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-serif: 'Libre Baskerville', 'Noto Serif Devanagari', 'Times New Roman', Times, Georgia, serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    transition: none !important;
+  }
+}
