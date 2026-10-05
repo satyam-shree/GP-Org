@@ -232,9 +232,9 @@ button:focus-visible {
 
   &__img {
     width: 100%;
-    height: clamp(260px, 46vw, 720px);
+    height: clamp(180px, 23vw, 360px);
     object-fit: cover;
-    object-position: center 35%;
+    object-position: center 40%;
   }
 }
 
