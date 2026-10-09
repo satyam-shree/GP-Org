@@ -1,0 +1,23 @@
+<span
+  class="wipe"
+  [class.wipe--from-hi]="startAt() === 'hi'"
+  [style.--wipe-duration]="duration + 's'"
+>
+  @for (c of [cycle()]; track c) {
+    <span class="wipe__stack">
+      <span class="wipe__layer wipe__layer--a">
+        @for (line of split(textA); track $index) {
+          <span class="wipe__line" [attr.lang]="isHindi(line) ? 'hi' : null">{{ line }}</span>
+        }
+      </span>
+      <span class="wipe__layer wipe__layer--b">
+        @for (line of split(textB); track $index) {
+          <span class="wipe__line" [attr.lang]="isHindi(line) ? 'hi' : null">{{ line }}</span>
+        }
+      </span>
+    </span>
+  }
+  @if (subtext) {
+    <span class="wipe__sub">{{ subtext }}</span>
+  }
+</span>
