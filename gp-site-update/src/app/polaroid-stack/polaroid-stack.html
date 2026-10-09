@@ -1,0 +1,28 @@
+<div
+  class="stack"
+  role="region"
+  aria-roledescription="carousel"
+  [attr.aria-label]="label()"
+  (mouseenter)="pause()"
+  (mouseleave)="resume()"
+>
+  @for (card of cards(); track card.src) {
+    <figure
+      class="polaroid"
+      [class.polaroid--leaving]="leaving() && card.pos === 0"
+      [class.polaroid--front]="card.pos === 0 && !leaving()"
+      [style.--rot]="card.rotate + 'deg'"
+      [style.--i]="card.pos"
+      (animationend)="onLeaveEnd($event, card.pos)"
+    >
+      <img
+        [src]="card.src"
+        [alt]="card.pos === 0 ? card.alt : ''"
+        [attr.aria-hidden]="card.pos === 0 ? null : true"
+        width="640"
+        height="800"
+        [attr.loading]="card.pos === 0 ? null : 'lazy'"
+      />
+    </figure>
+  }
+</div>

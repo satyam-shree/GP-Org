@@ -1,0 +1,114 @@
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header" id="home" [class.site-header--scrolled]="scrolled()">
+  <div class="site-header__strip">
+    <div class="site-header__marquee">
+      <p class="site-header__marquee-track">
+        Gangeshwar Pandey Trust is registered under sections 12A &amp; 80G of the Income Tax Act,
+        1961 and CSR-1 registered under the Ministry of Corporate Affairs for undertaking CSR
+        activities.
+        <a class="site-header__marquee-link" [routerLink]="certificatesHref"
+          >click here to visit all certificates</a
+        >
+      </p>
+    </div>
+    <div class="site-header__langs" role="group" aria-label="Language">
+      <button
+        type="button"
+        [class.is-on]="lang() === 'en'"
+        [attr.aria-pressed]="lang() === 'en'"
+        (click)="setLang('en')"
+      >
+        English
+      </button>
+      <span class="site-header__langs-sep" aria-hidden="true">|</span>
+      <button
+        type="button"
+        [class.is-on]="lang() === 'hi'"
+        [attr.aria-pressed]="lang() === 'hi'"
+        (click)="setLang('hi')"
+      >
+        Hindi
+      </button>
+    </div>
+  </div>
+  <div class="site-header__bar">
+    <a
+      class="brand"
+      routerLink="/"
+      fragment="home"
+      (click)="closeMenu()"
+      aria-label="G Pandey Trust home"
+    >
+      <img class="brand__seal" src="images/logo-seal.png" alt="" width="64" height="64" />
+      <app-brand-wipe
+        class="brand__wipe"
+        aria-hidden="true"
+        textA="G Pandey Trust"
+        textB="जी पांडे ट्रस्ट"
+        subtext=""
+        [duration]="4"
+        [language]="lang()"
+      />
+    </a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      [attr.aria-expanded]="menuOpen()"
+      aria-controls="primary-nav"
+      aria-label="Toggle navigation menu"
+      (click)="toggleMenu()"
+    >
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="primary-nav" class="nav" [class.nav--open]="menuOpen()" aria-label="Primary">
+      @for (link of navLinks; track link.label) {
+        <a
+          class="nav__pill"
+          [routerLink]="link.path"
+          [fragment]="link.fragment"
+          (click)="closeMenu()"
+        >
+          {{ link.label }}
+        </a>
+      }
+      <a class="here-btn" routerLink="/contact" (click)="closeMenu()">
+        <ng-container *ngTemplateOutlet="hand"></ng-container>
+        Here for You
+      </a>
+    </nav>
+  </div>
+</header>
+
+<ng-template #hand>
+  <svg
+    class="here-btn__icon"
+    viewBox="0 0 24 24"
+    width="30"
+    height="30"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M9 11V4.5a1.5 1.5 0 0 1 3 0V10" />
+    <path d="M12 10V3.5a1.5 1.5 0 0 1 3 0V10" />
+    <path
+      d="M15 10V5.5a1.5 1.5 0 0 1 3 0V14c0 4-2.5 7-6.5 7-3 0-4.5-1.5-6-4l-2-3.2a1.5 1.5 0 0 1 2.4-1.8L9 14"
+    />
+  </svg>
+</ng-template>
+
+<main id="main">
+  <router-outlet />
+</main>
+
+<footer class="site-footer">
+  <p>
+    &copy; {{ year }} G Pandey Trust (Dr. Gangeshwar Pandey Trust), Bhojpur, Bihar. Jeevan Jayate.
+  </p>
+</footer>

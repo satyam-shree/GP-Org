@@ -1,0 +1,111 @@
+:host {
+  display: block;
+  color: inherit;
+}
+
+.wipe {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 7.2em;
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  overflow: visible;
+}
+
+.wipe__stack {
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow: visible;
+}
+
+.wipe__layer {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: visible;
+  animation-duration: var(--wipe-duration, 4s);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+
+  &--a {
+    clip-path: inset(-0.4em 0 -0.15em 0);
+    animation-name: wipe-a;
+  }
+
+  &--b {
+    clip-path: inset(-0.4em 100% -0.15em 0);
+    animation-name: wipe-b;
+  }
+}
+
+.wipe--from-hi .wipe__layer {
+  animation-delay: calc(var(--wipe-duration, 4s) * -0.5);
+}
+
+.wipe__line {
+  display: block;
+  overflow: visible;
+  padding-top: 0.22em;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.wipe__sub {
+  margin-top: 0.15em;
+  font-size: 0.55em;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+@keyframes wipe-a {
+  0%,
+  10% {
+    clip-path: inset(-0.4em 0 -0.15em 0);
+  }
+
+  40%,
+  60% {
+    clip-path: inset(-0.4em 0 -0.15em 100%);
+  }
+
+  90%,
+  100% {
+    clip-path: inset(-0.4em 0 -0.15em 0);
+  }
+}
+
+@keyframes wipe-b {
+  0%,
+  10% {
+    clip-path: inset(-0.4em 100% -0.15em 0);
+  }
+
+  40%,
+  60% {
+    clip-path: inset(-0.4em 0 -0.15em 0);
+  }
+
+  90%,
+  100% {
+    clip-path: inset(-0.4em 100% -0.15em 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wipe__layer {
+    animation: none;
+  }
+
+  .wipe--from-hi {
+    .wipe__layer--a {
+      clip-path: inset(-0.4em 0 -0.15em 100%);
+    }
+
+    .wipe__layer--b {
+      clip-path: inset(-0.4em 0 -0.15em 0);
+    }
+  }
+}

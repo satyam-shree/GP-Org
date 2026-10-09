@@ -1,0 +1,58 @@
+:root {
+  --cream: #fcffd5;
+  --cream-deep: #e8ebb8;
+  --cream-block: #f0f3c2;
+  --cream-gold: #e0d894;
+  --ink: #111;
+  --bar: #111;
+  --cta: #3169f2;
+  --cta-hover: #2554d4;
+  --charcoal: #3e3e43;
+  --panel: #eef0c4;
+  --tan: #e4e7b8;
+  --gutter: clamp(20px, 5vw, 96px);
+  --font-sans:
+    'Poppins', 'Noto Sans Devanagari', system-ui, -apple-system, 'Segoe UI', Roboto, Arial,
+    sans-serif;
+  --font-serif:
+    'Libre Baskerville', 'Noto Serif Devanagari', 'Times New Roman', Times, Georgia, serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--ink);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

@@ -1,0 +1,71 @@
+<section class="contact" aria-labelledby="contact-title">
+  <div class="contact__intro">
+    <h1 id="contact-title" class="serif">Contact Us</h1>
+    <p>
+      Write to us if you would like to volunteer, donate, or ask about our camps and relief work in
+      {{ place }}. We read every message.
+    </p>
+  </div>
+
+  <div class="contact__grid">
+    @if (sent()) {
+      <div class="contact__success" role="status">
+        <h2 class="serif">Thank you</h2>
+        <p>
+          Your message is ready in your email app, addressed to
+          <strong>{{ email }}</strong
+          >. If nothing opened, copy that address and send it yourself.
+        </p>
+        <button type="button" class="contact__submit" (click)="reset()">
+          Send another message
+        </button>
+      </div>
+    } @else {
+      <form class="contact__form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <label>
+          <span>Name</span>
+          <input type="text" formControlName="name" autocomplete="name" />
+          @if (invalid('name')) {
+            <em>Please enter your name.</em>
+          }
+        </label>
+
+        <label>
+          <span>Email</span>
+          <input type="email" formControlName="email" autocomplete="email" />
+          @if (invalid('email')) {
+            <em>Please enter a valid email address.</em>
+          }
+        </label>
+
+        <label>
+          <span>Phone <small>(optional)</small></span>
+          <input type="tel" formControlName="phone" autocomplete="tel" />
+          @if (invalid('phone')) {
+            <em>Please enter a phone number, or leave this blank.</em>
+          }
+        </label>
+
+        <label>
+          <span>Message</span>
+          <textarea formControlName="message" rows="5"></textarea>
+          @if (invalid('message')) {
+            <em>Please write a short message (at least a sentence).</em>
+          }
+        </label>
+
+        <button type="submit" class="contact__submit">Send message</button>
+      </form>
+    }
+
+    <aside class="contact__details">
+      <h2 class="serif">Reach us</h2>
+      <p><strong>Contact: </strong>{{ phone }}</p>
+      <p>{{ place }}</p>
+      <p><strong>Email: </strong><a [href]="'mailto:' + email">{{ email }}</a></p>
+      <p class="contact__note">
+        Phone, email and meet-up names are placeholders until they are confirmed.
+      </p>
+    </aside>
+  </div>
+</section>
